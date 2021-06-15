@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import ReactMapGL, { Marker } from "react-map-gl";
 import "./App.css";
 
 
@@ -7,8 +8,21 @@ export default function App() {
     skills: [{ skill: "JavaScript", level: 4 }],
     newSkill: {
       name: "",
-      address: ""
+      address: "",
+      longitude: "",
+      latitude: ""
     },
+  });
+  const [viewport, setViewport] = useState({
+    latitude: 33.7032626,
+    longitude: -117.93113,
+    width: '70vw',
+    height: '70vh',
+    zoom: 11
+  });
+  const [marker] = useState({
+    latitude: 33.7032626,
+    longitude: -117.93113
   });
 
   useEffect(function() {
@@ -70,6 +84,17 @@ export default function App() {
 
   return (
     <section>
+      <ReactMapGL
+        {...viewport}
+        mapboxApiAccessToken='pk.eyJ1IjoiamltcGZyZWQiLCJhIjoiY2twNHU2bzJyMjNzZzJ1cXcweTN6azMyZSJ9.EL6OH1RDBnamvnIFj9tmXw'
+        onViewportChange= {viewport => {
+          setViewport(viewport)
+        }}
+      >
+        <Marker latitude={marker.latitude} longitude={marker.longitude}>
+        <div>*</div>
+        </Marker>
+      </ReactMapGL>
       <h2>PAMMY'S WHOLESALE FISH MARKET CUSTOMER LIST</h2>
       <hr />
       {state.skills.map((s, i) => (
