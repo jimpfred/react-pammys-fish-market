@@ -1,28 +1,16 @@
 import { useState, useEffect } from "react";
-import ReactMapGL, { Marker } from "react-map-gl";
 import "./App.css";
 
 
 export default function App() {
   const [state, setState] = useState({
-    skills: [{ skill: "JavaScript", level: 4 }],
+    skills: [{ name: "", address: null, longitude: null, latitude: null }],
     newSkill: {
       name: "",
       address: "",
       longitude: "",
       latitude: ""
     },
-  });
-  const [viewport, setViewport] = useState({
-    latitude: 33.7032626,
-    longitude: -117.93113,
-    width: '70vw',
-    height: '70vh',
-    zoom: 11
-  });
-  const [marker] = useState({
-    latitude: 33.7032626,
-    longitude: -117.93113
   });
 
   useEffect(function() {
@@ -56,7 +44,9 @@ export default function App() {
         skills: [...state.skills, skill],
         newSkill: {
           name: "",
-          address: "3"
+          address: "",
+          longitude: "",
+          latitude: ""
         }
       });
       
@@ -65,11 +55,6 @@ export default function App() {
       console.log(error);
     }
   }
-
-  function handleMap(e) {
-    return <div>maaaap</div>
-  }
-
 
 
   function handleChange(e) {
@@ -84,17 +69,6 @@ export default function App() {
 
   return (
     <section>
-      <ReactMapGL
-        {...viewport}
-        mapboxApiAccessToken='pk.eyJ1IjoiamltcGZyZWQiLCJhIjoiY2twNHU2bzJyMjNzZzJ1cXcweTN6azMyZSJ9.EL6OH1RDBnamvnIFj9tmXw'
-        onViewportChange= {viewport => {
-          setViewport(viewport)
-        }}
-      >
-        <Marker latitude={marker.latitude} longitude={marker.longitude}>
-        <div>*</div>
-        </Marker>
-      </ReactMapGL>
       <h2>PAMMY'S WHOLESALE FISH MARKET CUSTOMER LIST</h2>
       <hr />
       {state.skills.map((s, i) => (
@@ -106,18 +80,26 @@ export default function App() {
       <form onSubmit={handleSubmit}>
         <label>
           <span>Customer Name</span>
-          <input name="name" placeholder='i.e. Fishermans Diner' value={state.newSkill.skill} onChange={handleChange}/>
+          <input name="name" value={state.newSkill.skill} onChange={handleChange}/>
         </label>
         <label>
           <span>Address</span>
-          <input name="address" placeholder='i.e. 222 Walnut St. Rosemont, CA' value={state.newSkill.level} onChange={handleChange}>
+          <input name="address" value={state.newSkill.level} onChange={handleChange}>
+          </input>
+        </label>
+        <label>
+          <span>Longitude</span>
+          <input name="longitude" value={state.newSkill.longitude} onChange={handleChange}/>
+        </label>
+        <label>
+          <span>Address</span>
+          <input name="latitude" value={state.newSkill.laditude} onChange={handleChange}>
           </input>
         </label>
         <button>ADD CUSTOMER NAME AND DELIVERY ADDRESS</button>
       </form>
-      <form onSubmit={handleMap}>
-        <button>MAP</button>
-      </form>
     </section>
   );
 }
+
+
