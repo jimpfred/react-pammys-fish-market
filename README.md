@@ -21,7 +21,8 @@ React-Mapbox-GL
 Getting Started
 
 Trello:  https://trello.com/b/5foYg8TR/pammys-fish-market-project-3
-Heroku:  Pammys-customer-map-backend
+Netify:  https://condescending-benz-ce41e7.netlify.app/
+Heroku:  https://pammys-backend-final.herokuapp.com/
 
 Unsolved Problems
 
