@@ -16,7 +16,7 @@ export default function App() {
   useEffect(function() {
     async function getAppData() {
 
-      const skills = await fetch('http://https://pammys-backend-final.herokuapp.com//api/skills')
+      const skills = await fetch('https://pammys-backend-final.herokuapp.com/api/skills')
       .then(res => res.json());
       
       setState(prevState => ({
@@ -32,7 +32,7 @@ export default function App() {
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      const skill = await fetch('http://https://pammys-backend-final.herokuapp.com//api/skills', {
+      const skill = await fetch('https://pammys-backend-final.herokuapp.com/api/skills', {
         method: 'POST',
         headers: {
           'Content-type': 'Application/json'
